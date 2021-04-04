@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">ProyectoIntegrador1.2</string>
+    <string name="frg_Principal">Principal</string>
+    <string name="frg_Cultura">Cultura</string>
+    <string name="frg_Deportes">Deportes</string>
+    <string name="frg_Preguntas">Preguntas Frecuentes</string>
+    <string name="frg_MiPerfil">Mi Perfil</string>
+    <string name="frg_Admins">Administradores</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
