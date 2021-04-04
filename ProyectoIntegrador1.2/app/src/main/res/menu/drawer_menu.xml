@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/btn_Principal"
+            android:title="@string/frg_Principal"
+            android:icon="@drawable/ic_home"
+            android:checked="true"/>
+        <item
+            android:id="@+id/btn_Cultura"
+            android:title="@string/frg_Cultura"
+            android:icon="@drawable/ic_cultura" />
+        <item
+            android:id="@+id/btn_Deportes"
+            android:title="@string/frg_Deportes"
+            android:icon="@drawable/ic_home" />
+        <item
+            android:id="@+id/btn_Preguntas"
+            android:title="@string/frg_Preguntas"
+            android:icon="@drawable/ic_preguntas" />
+
+    </group>
+
+    <item android:title="Sesión">
+
+        <menu>
+
+            <item
+                android:id="@+id/btn_MiPerful"
+                android:title="@string/frg_MiPerfil"
+                android:icon="@drawable/ic_miperfil" />
+            <item
+                android:id="@+id/btn_Admins"
+                android:title="@string/frg_Admins"
+                android:icon="@drawable/ic_admins" />
+            <item
+                android:id="@+id/btn_Logout"
+                android:title="Cerrar Sesión"
+                android:icon="@drawable/ic_logout" />
+
+        </menu>
+
+    </item>
+
+</menu>
