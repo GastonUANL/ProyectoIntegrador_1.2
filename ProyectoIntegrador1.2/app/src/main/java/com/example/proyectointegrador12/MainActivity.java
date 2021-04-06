@@ -17,5 +17,6 @@ public class MainActivity extends AppCompatActivity {
     public void logIn(View v){
         Intent i = new Intent(getApplicationContext(), MenuDinamico.class);
         startActivity(i);
+        this.finish();
     }
 }
