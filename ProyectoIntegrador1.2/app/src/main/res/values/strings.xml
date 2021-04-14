@@ -11,6 +11,4 @@
     <string name="drawer_open">Abrir Menú</string>
     <string name="drawer_close">Cerrar Menú</string>
     <string name="topimage">\@string</string>
-    <string name="pregunta01">\@string</string>
-    <string name="respuesta01">\@string</string>
 </resources>
