@@ -16,6 +16,6 @@
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:text="Nombre Plantilla"
-        android:gravity="center"/>
+        android:gravity="center" />
 
 </LinearLayout>
