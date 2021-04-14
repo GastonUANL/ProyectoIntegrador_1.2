@@ -103,8 +103,8 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
                 break;
             }
             case R.id.btn_Admins:{
-                toast = Toast.makeText(this, "Abrir Ventana Administradores", Toast.LENGTH_SHORT);
-                toast.show();
+                Intent i = new Intent(getApplicationContext(), Administradores.class);
+                startActivity(i);
                 break;
             }
             case R.id.btn_Logout:{
