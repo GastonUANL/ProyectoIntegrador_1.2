@@ -129,4 +129,11 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
+        this.finish();
+    }
 }
