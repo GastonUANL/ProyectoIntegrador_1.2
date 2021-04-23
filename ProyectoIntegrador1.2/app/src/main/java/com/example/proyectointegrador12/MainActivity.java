@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
     public static final String USUARIO = "com.example.proyectointegrador12.MainActivity.USUARIO";
+    public static final String TIPOUSR = "com.example.proyectointegrador12.MainActivity.TIPOUSR";
 
     DatabaseReference DBReg;
     EditText usr, pass;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     String usrA, passA;
                     int ErrCode = 0;
                     String idUsr = "";
+                    String tipoUsr = "";
                     for (DataSnapshot ds : dataSnapshot.getChildren()){
                         usrA = ds.child("nombreUsuario").getValue().toString();
                         if(usrA.equals(Usuario))
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                             passA = ds.child("contrasena").getValue().toString();
                              if(passA.equals(Contraseña)){
                                  idUsr = ds.child("id_Usr").getValue().toString();
+                                 tipoUsr = ds.child("tipo_Usr").getValue().toString();
                                  ErrCode = 1;
                              }
                              else { ErrCode = 2; }
@@ -80,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "Exito " + idUsr, Toast.LENGTH_LONG).show();
                             Intent i = new Intent(getApplicationContext(), MenuDinamico.class);
                             i.putExtra(USUARIO, idUsr);
+                            i.putExtra(TIPOUSR, tipoUsr);
                             startActivity(i);
                             MainActivity.this.finish();
                             break;

@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoIntegrador12">
-        <activity android:name=".Administradores"
+        <activity android:name=".MiPerfil"></activity>
+        <activity
+            android:name=".Administradores"
             android:label="Administradores"
-            android:theme="@style/Theme.AppCompat.DayNight.Dialog"/>
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
         <activity
             android:name=".VistaNoticia"
             android:label="Noticia"

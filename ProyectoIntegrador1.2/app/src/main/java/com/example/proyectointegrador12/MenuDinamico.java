@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -57,6 +58,24 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
         tb.setNavigationIcon(R.drawable.ic_menu);
 
         nv.setNavigationItemSelectedListener(this);
+
+        hideItmes(nv);
+    }
+
+    private void hideItmes(NavigationView nv) {
+        Menu nav_Menu = nv.getMenu();
+        Intent i = getIntent();
+        int tipo = Integer.parseInt(i.getStringExtra(MainActivity.TIPOUSR));
+        if(tipo == 3){
+            nav_Menu.findItem(R.id.btn_MiPerful).setVisible(false);
+            nav_Menu.findItem(R.id.btn_Admins).setVisible(true);
+        } else if(tipo == 2){
+            nav_Menu.findItem(R.id.btn_MiPerful).setVisible(false);
+            nav_Menu.findItem(R.id.btn_Admins).setVisible(false);
+        } else if(tipo == 1){
+            nav_Menu.findItem(R.id.btn_MiPerful).setVisible(true);
+            nav_Menu.findItem(R.id.btn_Admins).setVisible(false);
+        }
     }
 
     @Override
@@ -80,7 +99,6 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
     private void selectItemNav(MenuItem item){
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        Toast toast;
         switch(item.getItemId()){
             case R.id.btn_Cultura:{
                 ft.replace(R.id.content, new Cultura()).commit();
@@ -98,8 +116,8 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
                 break;
             }
             case R.id.btn_MiPerful:{
-                toast = Toast.makeText(this, "Abrir Ventana Mi Perfil", Toast.LENGTH_SHORT);
-                toast.show();
+                Intent i = new Intent(getApplicationContext(), MiPerfil.class);
+                startActivity(i);
                 break;
             }
             case R.id.btn_Admins:{
