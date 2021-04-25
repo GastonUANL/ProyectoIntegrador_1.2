@@ -12,6 +12,8 @@ import com.example.proyectointegrador12.R;
 
 public class Cultura extends Fragment {
 
+    public static final String USUARIO = "com.example.proyectointegrador12.cultura.Cultura.USUARIO";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

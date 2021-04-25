@@ -133,11 +133,12 @@
                 android:id="@+id/btn_EditarUsr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Editar"
                 android:layout_marginHorizontal="100dp"
+                android:layout_weight="1"
+                android:onClick="editarPerfil"
+                android:text="Editar"
                 android:textColor="#3C3C3C"
-                app:backgroundTint="#DADADA"/>
+                app:backgroundTint="#DADADA" />
 
         </LinearLayout>
 

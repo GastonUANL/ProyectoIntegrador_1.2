@@ -25,15 +25,22 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MenuDinamico extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static final String USUARIO = "com.example.proyectointegrador12.MenuDinamico.USUARIO";
+
     DrawerLayout dl;
     NavigationView nv;
     Toolbar tb;
     ActionBarDrawerToggle toggle;
+    String idUsr = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_dinamico);
+
+        //Login
+        Intent i = getIntent();
+        idUsr = i.getStringExtra(MainActivity.USUARIO);
 
         //UI
         dl = findViewById(R.id.drawer_layout);
@@ -117,6 +124,7 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
             }
             case R.id.btn_MiPerful:{
                 Intent i = new Intent(getApplicationContext(), MiPerfil.class);
+                i.putExtra(USUARIO, idUsr);
                 startActivity(i);
                 break;
             }

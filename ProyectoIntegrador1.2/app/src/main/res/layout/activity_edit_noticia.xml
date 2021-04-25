@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditNoticia"
+    android:orientation="vertical"
+    android:background="@android:color/holo_green_dark">
+    <ImageView
+        android:id="@+id/btn_back_EditN"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_logout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginVertical="20dp"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/ic_home"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cargar Imagen"
+            android:layout_margin="35dp"
+            android:textColor="#3C3C3C"
+            app:backgroundTint="#DADADA"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Titulo:"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"/>
+
+        <EditText
+            android:id="@+id/txt_Titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:textColor="#FFFFFF"
+            android:hint="Ingrese el Titulo"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contenido:"
+        android:layout_marginLeft="35dp"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/editTextTextMultiLine"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:hint="Ingrese el contenido de la noticia."
+        android:textColor="#FFFFFF"/>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       android:gravity="center">
+
+       <Button
+           android:id="@+id/btn_Action"
+           android:layout_width="200dp"
+           android:layout_height="wrap_content"
+           android:text="Guardar"
+           android:layout_margin="50dp"
+           android:textColor="#3C3C3C"
+           app:backgroundTint="#DADADA"/>
+
+   </LinearLayout>
+
+
+</LinearLayout>
