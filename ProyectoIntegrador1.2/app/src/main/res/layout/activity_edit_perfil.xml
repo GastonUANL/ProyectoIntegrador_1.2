@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".principal.Registro"
+    tools:context=".EditPerfil"
     android:background="@android:color/holo_green_dark">
 
     <ImageView
@@ -150,7 +150,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
-        android:id="@+id/cargarimg"
+        android:id="@+id/cargarImg"
         android:layout_width="106dp"
         android:layout_height="72dp"
         android:layout_marginEnd="16dp"
@@ -168,13 +168,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
-        android:onClick="guardar"
-        android:text="Registrarse"
-        android:textColor="#3C3C3C"
-        app:backgroundTint="#DADADA"
+        android:text="Guardar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="#3C3C3C"
+        app:backgroundTint="#DADADA"/>
 
     <View
         android:id="@+id/divider4"

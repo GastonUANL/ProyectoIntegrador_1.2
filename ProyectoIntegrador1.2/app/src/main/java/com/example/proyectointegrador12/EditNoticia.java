@@ -4,29 +4,31 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.proyectointegrador12.cultura.Cultura;
 import com.example.proyectointegrador12.deportes.Deportes;
+import com.example.proyectointegrador12.principal.Registro;
 
-public class VistaNoticia extends AppCompatActivity {
-
-    public static final String USUARIO = "com.example.proyectointegrador12.MainActivity.USUARIO";
+public class EditNoticia extends AppCompatActivity {
 
     String id_Usr, id_Ntc;
-    ImageView backbtn;
     int actFrom = 0;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vista_noticia);
+        setContentView(R.layout.activity_edit_noticia);
 
         //UI
-        backbtn = findViewById(R.id.btn_back);
-        backbtn.setOnClickListener(new View.OnClickListener() {
+        back = findViewById(R.id.btn_back_EditN);
+
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 back();
@@ -37,10 +39,12 @@ public class VistaNoticia extends AppCompatActivity {
         /*  0: Error
             1: Principal
             2: Cultura
-            3: Deportes */
+            3: Deportes
+            4: VistaNoticia */
         actFrom = getActivity();
         id_Usr = getId_Usr(actFrom);
         id_Ntc = getId_Ntc(actFrom);
+
     }
 
     public int getActivity() {
@@ -48,7 +52,8 @@ public class VistaNoticia extends AppCompatActivity {
         /*  0: Error
             1: Principal
             2: Cultura
-            3: Deportes */
+            3: Deportes
+            4: VistaNoticia */
         Intent i = getIntent();
         if(i.hasExtra(MainActivity.USUARIO)){
             activity = 1;
@@ -56,6 +61,8 @@ public class VistaNoticia extends AppCompatActivity {
             activity = 2;
         } else if(i.hasExtra(Deportes.USUARIO)) {
             activity = 3;
+        } else if(i.hasExtra(VistaNoticia.USUARIO)) {
+            activity = 4;
         }
         return activity;
     }
@@ -68,18 +75,6 @@ public class VistaNoticia extends AppCompatActivity {
     public String getId_Ntc(int actFrom) {
         String id_Ntc = "";
         return id_Ntc;
-    }
-
-    public void editar(View view) {
-        Intent i = new Intent(getApplicationContext(), EditNoticia.class);
-        i.putExtra(USUARIO, id_Usr);
-        i.putExtra(USUARIO, id_Ntc);
-        startActivity(i);
-    }
-
-    public void onBackPressed() {
-        super.onBackPressed();
-        this.finish();
     }
 
     public void back() {
