@@ -40,12 +40,12 @@ public class Registro extends AppCompatActivity {
     }
 
     public void guardar(View view) {
-        Intent i = new Intent(getApplicationContext(), EditNoticia.class);
-        i.putExtra(USUARIO, "1");
-        startActivity(i);
+
     }
 
     public void back() {
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
         this.finish();
     }
 }

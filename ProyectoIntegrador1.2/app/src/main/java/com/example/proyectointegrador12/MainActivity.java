@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                     switch(ErrCode){
                         case 1:{
-                            Toast.makeText(MainActivity.this, "Exito " + idUsr, Toast.LENGTH_LONG).show();
                             Intent i = new Intent(getApplicationContext(), MenuDinamico.class);
                             i.putExtra(USUARIO, idUsr);
                             i.putExtra(TIPOUSR, tipoUsr);

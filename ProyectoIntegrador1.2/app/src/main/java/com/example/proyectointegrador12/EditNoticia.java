@@ -35,46 +35,14 @@ public class EditNoticia extends AppCompatActivity {
             }
         });
 
-        // obtiene la Activity de origen
-        /*  0: Error
-            1: Principal
-            2: Cultura
-            3: Deportes
-            4: VistaNoticia */
-        actFrom = getActivity();
-        id_Usr = getId_Usr(actFrom);
-        id_Ntc = getId_Ntc(actFrom);
-
-    }
-
-    public int getActivity() {
-        int activity = 0;
-        /*  0: Error
-            1: Principal
-            2: Cultura
-            3: Deportes
-            4: VistaNoticia */
+        // EXTRAS
         Intent i = getIntent();
-        if(i.hasExtra(MainActivity.USUARIO)){
-            activity = 1;
-        } else if(i.hasExtra(Cultura.USUARIO)) {
-            activity = 2;
-        } else if(i.hasExtra(Deportes.USUARIO)) {
-            activity = 3;
-        } else if(i.hasExtra(VistaNoticia.USUARIO)) {
-            activity = 4;
-        }
-        return activity;
-    }
+        id_Usr = i.getStringExtra(MenuDinamico.USUARIO);
+        id_Ntc = i.getStringExtra(MenuDinamico.NOTICIA);
 
-    public String getId_Usr(int actFrom) {
-        String id_Usr = "";
-        return id_Usr;
-    }
+        Toast.makeText(EditNoticia.this,  id_Usr + ", " + id_Ntc, Toast.LENGTH_LONG).show();
 
-    public String getId_Ntc(int actFrom) {
-        String id_Ntc = "";
-        return id_Ntc;
+
     }
 
     public void back() {

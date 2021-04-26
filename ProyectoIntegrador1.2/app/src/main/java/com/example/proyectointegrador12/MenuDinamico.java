@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.proyectointegrador12.cultura.Cultura;
@@ -26,6 +27,7 @@ import com.google.android.material.navigation.NavigationView;
 public class MenuDinamico extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String USUARIO = "com.example.proyectointegrador12.MenuDinamico.USUARIO";
+    public static final String NOTICIA = "com.example.proyectointegrador12.MenuDinamico.NOTICIA";
 
     DrawerLayout dl;
     NavigationView nv;
@@ -161,5 +163,12 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
         Intent i = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(i);
         this.finish();
+    }
+
+    public void editNoticia(View view) {
+        Intent i = new Intent(getApplicationContext(), EditNoticia.class);
+        i.putExtra(USUARIO, "id_Usr");
+        i.putExtra(NOTICIA, "id_Ntc");
+        startActivity(i);
     }
 }
