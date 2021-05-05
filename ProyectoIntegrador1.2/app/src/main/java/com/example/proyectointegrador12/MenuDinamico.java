@@ -8,6 +8,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -16,13 +18,23 @@ import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Toast;
 
+import com.example.proyectointegrador12.adapters.Adapter_Principal;
 import com.example.proyectointegrador12.cultura.Cultura;
+import com.example.proyectointegrador12.db.DB_Noticias;
 import com.example.proyectointegrador12.deportes.Deportes;
 import com.example.proyectointegrador12.preguntas.Preguntas;
 import com.example.proyectointegrador12.principal.Principal;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MenuDinamico extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -34,6 +46,7 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
     Toolbar tb;
     ActionBarDrawerToggle toggle;
     String idUsr = "";
+    public String tipoUsr = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +56,8 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
         //Login
         Intent i = getIntent();
         idUsr = i.getStringExtra(MainActivity.USUARIO);
+
+
 
         //UI
         dl = findViewById(R.id.drawer_layout);
@@ -74,7 +89,8 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
     private void hideItmes(NavigationView nv) {
         Menu nav_Menu = nv.getMenu();
         Intent i = getIntent();
-        int tipo = Integer.parseInt(i.getStringExtra(MainActivity.TIPOUSR));
+        tipoUsr = i.getStringExtra(MainActivity.TIPOUSR);
+        int tipo = Integer.parseInt(tipoUsr);
         if(tipo == 3){
             nav_Menu.findItem(R.id.btn_MiPerful).setVisible(false);
             nav_Menu.findItem(R.id.btn_Admins).setVisible(true);
@@ -85,6 +101,7 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
             nav_Menu.findItem(R.id.btn_MiPerful).setVisible(true);
             nav_Menu.findItem(R.id.btn_Admins).setVisible(false);
         }
+
     }
 
     @Override
@@ -102,6 +119,7 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         selectItemNav(item);
+
         return true;
     }
 
@@ -170,5 +188,9 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
         i.putExtra(USUARIO, "id_Usr");
         i.putExtra(NOTICIA, "id_Ntc");
         startActivity(i);
+    }
+
+    public String getTipoUsr() {
+        return tipoUsr;
     }
 }

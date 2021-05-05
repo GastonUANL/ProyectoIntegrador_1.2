@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/holo_green_dark"
+    android:orientation="vertical"
+    android:layout_margin="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="130dp"
+            android:src="@drawable/ic_home"
+            android:id="@+id/rf_img"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/rf_txt_Titulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Titulo Plantilla"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#61000000"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/rf_txt_Contenido"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Plantilla de Texto de noticia, escribo varias cosas para que se vea cool."
+                    android:textColor="#FFFFFF"
+                    android:layout_margin="10dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:id="@+id/rf_ll_BtnsAdmin">
+        <Button
+            android:id="@+id/rf_btn_Editar"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#575757"
+            android:text="Editar"
+            android:textColor="#E4E4E4"
+            android:layout_marginRight="5dp"/>
+        <Button
+            android:id="@+id/rf_btn_Eliminar"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#575757"
+            android:text="Elimianr"
+            android:textColor="#E4E4E4"
+            android:layout_marginLeft="5dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:id="@+id/rf_ll_BtnsUser">
+        <Button
+            android:id="@+id/rf_btn_Consultar"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#575757"
+            android:text="Ver mas"
+            android:textColor="#E4E4E4" />
+
+    </LinearLayout>
+
+</LinearLayout>

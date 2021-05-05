@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseReference DBRef;
     EditText usr, pass;
+    boolean picado = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,63 +42,66 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logIn(View v){
+        //validacion de usuario
+        String Usuario = usr.getText().toString();
+        if (Usuario.equals("")) {
+            usr.setError("El Nombre de Usuario no puede estar vacio.");
+            return;
+        }
+        //validacion de contraseña
+        String Contraseña = pass.getText().toString();
+        if (Contraseña.equals("")) {
+            pass.setError("La contraseña no puede estar vacia.");
+            return;
+        }
+        picado = true;
         try {
-            //validacion de usuario
-            String Usuario = usr.getText().toString();
-            if (Usuario.equals("")) {
-                usr.setError("El Nombre de Usuario no puede estar vacio.");
-                return;
-            }
-            //validacion de contraseña
-            String Contraseña = pass.getText().toString();
-            if (Contraseña.equals("")) {
-                pass.setError("La contraseña no puede estar vacio.");
-                return;
-            }
-            else if(Contraseña.length() <5)
-            {
-                pass.setError("La contraseña debe contener al menos 5 caracteres.");
-                return;
-            }
             //validación DB
             DBRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    String usrA, passA;
-                    int ErrCode = 0;
-                    String idUsr = "";
-                    String tipoUsr = "";
-                    for (DataSnapshot ds : dataSnapshot.getChildren()){
-                        usrA = ds.child("nombreUsuario").getValue().toString();
-                        if(usrA.equals(Usuario))
-                        {
-                            passA = ds.child("contrasena").getValue().toString();
-                             if(passA.equals(Contraseña)){
-                                 idUsr = ds.child("id_Usr").getValue().toString();
-                                 tipoUsr = ds.child("tipo_Usr").getValue().toString();
-                                 ErrCode = 1;
-                             }
-                             else { ErrCode = 2; }
+                    if(picado)
+                    {
+                        String usrA = "";
+                        String passA = "";
+                        int ErrCode = 0;
+                        String idUsr = "";
+                        String tipoUsr = "";
+                        for (DataSnapshot ds : dataSnapshot.getChildren()){
+                            usrA = ds.child("nombreUsuario").getValue().toString();
+                            if(usrA.equals(Usuario))
+                            {
+                                //Usuario Valido -> contraseña
+                                passA = ds.child("contrasena").getValue().toString();
+                                 if(passA.equals(Contraseña)){
+                                     idUsr = ds.child("id_Usr").getValue().toString();
+                                     tipoUsr = ds.child("tipo_Usr").getValue().toString();
+                                     ErrCode = 1;
+                                     break;
+                                 }
+                                 else { ErrCode = 2; }
+                            }
+                            else { ErrCode = 2; }
                         }
-                        else { ErrCode = 2; }
-                    }
-                    switch(ErrCode){
-                        case 1:{
-                            Intent i = new Intent(getApplicationContext(), MenuDinamico.class);
-                            i.putExtra(USUARIO, idUsr);
-                            i.putExtra(TIPOUSR, tipoUsr);
-                            startActivity(i);
-                            MainActivity.this.finish();
-                            break;
+                        switch(ErrCode){
+                            case 1:{
+                                Intent i = new Intent(getApplicationContext(), MenuDinamico.class);
+                                i.putExtra(USUARIO, idUsr);
+                                i.putExtra(TIPOUSR, tipoUsr);
+                                startActivity(i);
+                                MainActivity.this.finish();
+                                break;
+                            }
+                            case 2:{
+                                Toast.makeText(MainActivity.this, "El Nomrbe de Usuario y la Contraseña no coinciden con los de ningun usuario registrado.", Toast.LENGTH_LONG).show();
+                                break;
+                            }
+                            default:{
+                                Toast.makeText(MainActivity.this, "Error no Registrado", Toast.LENGTH_LONG).show();
+                                break;
+                            }
                         }
-                        case 2:{
-                            Toast.makeText(MainActivity.this, "El Nomrbe de Usuario y la Contraseña no coinciden con los de ningun usuario registrado.", Toast.LENGTH_LONG).show();
-                            break;
-                        }
-                        default:{
-                            Toast.makeText(MainActivity.this, "Error no Registrado", Toast.LENGTH_LONG).show();
-                            break;
-                        }
+                        picado = false;
                     }
                 }
 
