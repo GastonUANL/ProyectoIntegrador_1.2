@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.proyectointegrador12.EditNoticia;
 import com.example.proyectointegrador12.MenuDinamico;
@@ -34,6 +35,7 @@ public class Principal extends Fragment {
     RecyclerView rv; //rv
     Adapter_Principal adapter;
     List<DB_Noticias> noticias;
+    LinearLayout ll_add;
 
     String TipoUsr = "";
 
@@ -54,9 +56,16 @@ public class Principal extends Fragment {
         MenuDinamico MD = (MenuDinamico) getActivity();
         TipoUsr = MD.getTipoUsr();
 
+        //UI
         noticias = new ArrayList<>();
         rv = view.findViewById(R.id.rv_Principal);
         adapter = new Adapter_Principal(noticias, TipoUsr);
+        ll_add = view.findViewById(R.id.ll_add_P);
+
+        //Hide
+        if(TipoUsr.equals("1")){
+            ll_add.setVisibility(view.GONE);
+        }
 
         //Rexicler View
         rv.setLayoutManager(new LinearLayoutManager(getContext()));

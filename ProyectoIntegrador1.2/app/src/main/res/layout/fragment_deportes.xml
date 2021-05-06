@@ -7,102 +7,30 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rv_Deportes"
+            android:layout_weight="70"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="horizontal"
-            android:layout_margin="15dp"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:src="@drawable/ic_home"
-                android:layout_margin="5dp"
-                android:layout_weight="2"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="10">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Titulo noticia Deportes 01"
-                    android:layout_margin="5dp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ejemplo del contenido de la noticia, es un ejemplo de texto largo"
-                    android:layout_margin="5dp"/>
-
-            </LinearLayout>
-
+            android:gravity="center"
+            android:background="@android:color/holo_green_dark"
+            android:id="@+id/ll_add_D">
             <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:layout_weight="1"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="Agregar"
                 android:backgroundTint="#575757"
-                android:onClick="editNoticia"
-                android:text="Edit"
-                android:textColor="#E4E4E4" />
-
-
+                android:textColor="#E4E4E4"
+                android:layout_margin="3dp"/>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="15dp"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:src="@drawable/ic_home"
-                android:layout_margin="5dp"
-                android:layout_weight="2"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="10">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Titulo noticia Deportes 02"
-                    android:layout_margin="5dp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ejemplo del contenido de la noticia, es un ejemplo de texto largo"
-                    android:layout_margin="5dp"/>
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:backgroundTint="#575757"
-                android:onClick="editNoticia"
-                android:text="Edit"
-                android:textColor="#E4E4E4" />
-
-
-        </LinearLayout>
-
     </LinearLayout>
-
 </FrameLayout>
