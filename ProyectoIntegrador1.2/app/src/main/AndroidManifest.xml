@@ -15,12 +15,10 @@
         <activity android:name=".MiPerfil" />
         <activity
             android:name=".Administradores"
-            android:label="Administradores"
-            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
+            android:label="Administradores" />
         <activity
             android:name=".VistaNoticia"
-            android:label="Noticia"
-            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
+            android:label="Noticia" />
         <activity android:name=".MenuDinamico" />
         <activity android:name=".MainActivity">
             <intent-filter>
