@@ -18,10 +18,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.proyectointegrador12.Administradores;
 import com.example.proyectointegrador12.EditNoticia;
 import com.example.proyectointegrador12.EditPerfil;
 import com.example.proyectointegrador12.MainActivity;
+import com.example.proyectointegrador12.MenuDinamico;
+import com.example.proyectointegrador12.MiPerfil;
 import com.example.proyectointegrador12.R;
+import com.example.proyectointegrador12.adapters.Adapter_Admins;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -52,6 +56,7 @@ public class Registro extends AppCompatActivity {
 
     EditText nombre, correo, contra1, contra2;
     String idUsr = "";
+    int tipoReg = 1; //1: normal, 2: Admin
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,12 +81,26 @@ public class Registro extends AppCompatActivity {
         correo = findViewById(R.id.emailinput);
         contra1 = findViewById(R.id.contrasenainput);
         contra2 = findViewById(R.id.contrasena2input);
+
+        //GetTipo
+        tipoReg = getActivity();
+    }
+
+    public int getActivity() {
+        int activity = 1;
+        /*  0: MiPerfil
+            1: Admins */
+        Intent i = getIntent();
+        if(i.hasExtra(MainActivity.TIPOP)){
+            activity = 1;
+        } else if(i.hasExtra(Administradores.TIPOP)) {
+            activity = 2;
+        }
+        return activity;
     }
 
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(i);
         this.finish();
     }
 
@@ -193,8 +212,6 @@ public class Registro extends AppCompatActivity {
     }
 
     public void back() {
-        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(i);
         this.finish();
     }
 

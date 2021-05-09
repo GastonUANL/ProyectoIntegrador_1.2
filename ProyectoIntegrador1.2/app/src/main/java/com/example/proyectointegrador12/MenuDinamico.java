@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -19,6 +20,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.proyectointegrador12.adapters.Adapter_Principal;
@@ -30,8 +33,10 @@ import com.example.proyectointegrador12.principal.Principal;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +52,10 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
     ActionBarDrawerToggle toggle;
     String idUsr = "";
     public String tipoUsr = "";
+    ImageView imgPrerfil;
+    TextView namePerfil;
+
+    DatabaseReference DBRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +93,29 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
         nv.setNavigationItemSelectedListener(this);
 
         hideItmes(nv);
+
+        //Database
+        DBRef = FirebaseDatabase.getInstance().getReference().child("Usuarios").child(idUsr);
+
+        //set data usr
+        View headView = nv.getHeaderView(0);
+        imgPrerfil = headView.findViewById(R.id.img_nav_perfil);
+        namePerfil = headView.findViewById(R.id.txt_nav_nombreusr);
+
+        DBRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                namePerfil.setText(dataSnapshot.child("nombreUsuario").getValue().toString());
+                if(!dataSnapshot.child("imagen").getValue().toString().equals("N/A")) {
+                    Picasso.get().load(dataSnapshot.child("imagen").getValue().toString()).into(imgPrerfil);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void hideItmes(NavigationView nv) {
@@ -101,6 +133,7 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
             nav_Menu.findItem(R.id.btn_MiPerful).setVisible(true);
             nav_Menu.findItem(R.id.btn_Admins).setVisible(false);
         }
+
 
     }
 
@@ -177,10 +210,13 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
     }
 
     public void onBackPressed() {
-        super.onBackPressed();
-        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(i);
-        this.finish();
+        if(dl.isDrawerOpen(GravityCompat.START)){
+            dl.closeDrawer(GravityCompat.START);
+        } else {
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(i);
+            this.finish();
+        }
     }
 
     public void editNoticia(View view) {

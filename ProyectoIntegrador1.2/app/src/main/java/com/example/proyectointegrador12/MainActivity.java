@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String USUARIO = "com.example.proyectointegrador12.MainActivity.USUARIO";
     public static final String TIPOUSR = "com.example.proyectointegrador12.MainActivity.TIPOUSR";
+    public static final String TIPOP = "com.example.proyectointegrador12.MainActivity.TIPOP";
 
     DatabaseReference DBRef;
     EditText usr, pass;
@@ -118,8 +119,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void registrarse(View view) {
         Intent i = new Intent(getApplicationContext(), Registro.class);
+        i.putExtra(TIPOP, "2");
         startActivity(i);
-        this.finish();
     }
 
     public void onBackPressed() {

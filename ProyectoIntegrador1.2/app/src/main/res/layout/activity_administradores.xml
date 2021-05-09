@@ -9,23 +9,35 @@
     tools:context=".Administradores"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/btn_back_Admins"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_logout" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:id="@+id/rv_Admins"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_weight="10">
+        android:layout_weight="5">
+
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:layout_margin="15dp"
+            android:onClick="agregar"
+            android:text="Agregar"
+            android:textColor="#3C3C3C"
+            app:backgroundTint="#DADADA" />
     </LinearLayout>
 
 

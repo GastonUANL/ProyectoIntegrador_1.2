@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.example.proyectointegrador12.adapters.Adapter_Admins;
+import com.example.proyectointegrador12.cultura.Cultura;
+import com.example.proyectointegrador12.deportes.Deportes;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +23,7 @@ public class EditPerfil extends AppCompatActivity {
     public static final String USUARIO = "com.example.proyectointegrador12.EditPerfil.USUARIO";
 
     String idUsr = "";
+    int activityOr = 0;
     EditText usr, correo, contra, verifcontra;
     ImageView backbtn;
     DatabaseReference DBRef;
@@ -30,8 +34,8 @@ public class EditPerfil extends AppCompatActivity {
         setContentView(R.layout.activity_edit_perfil);
 
         //Login
-        Intent i = getIntent();
-        idUsr = i.getStringExtra(MiPerfil.USUARIO);
+        activityOr = getActivity();
+        idUsr = getUsr(activityOr);
 
         //Database
         DBRef = FirebaseDatabase.getInstance().getReference().child("Usuarios").child(idUsr);
@@ -49,7 +53,7 @@ public class EditPerfil extends AppCompatActivity {
             }
         });
 
-            //Hints
+        //Hints
         DBRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -64,6 +68,31 @@ public class EditPerfil extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    public int getActivity() {
+        int activity = 0;
+        /*  0: MiPerfil
+            1: Admins */
+        Intent i = getIntent();
+        if(i.hasExtra(MiPerfil.USUARIO)){
+            activity = 0;
+        } else if(i.hasExtra(Adapter_Admins.USUARIO)) {
+            activity = 1;
+        }
+        return activity;
+    }
+
+    public String getUsr(int actOr){
+        String usr = "";
+        Intent i = getIntent();
+        if(actOr == 0){
+            usr = i.getStringExtra(MiPerfil.USUARIO);
+        } else if(actOr == 1){
+            usr = i.getStringExtra(Adapter_Admins.USUARIO);
+        }
+        return usr;
     }
 
     public void onBackPressed() {
@@ -76,5 +105,9 @@ public class EditPerfil extends AppCompatActivity {
 
     public void back() {
         this.finish();
+    }
+
+    public void save(View view){
+
     }
 }
