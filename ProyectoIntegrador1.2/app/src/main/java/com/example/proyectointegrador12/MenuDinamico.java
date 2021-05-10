@@ -109,6 +109,7 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
                 if(!dataSnapshot.child("imagen").getValue().toString().equals("N/A")) {
                     Picasso.get().load(dataSnapshot.child("imagen").getValue().toString()).into(imgPrerfil);
                 }
+                tipoUsr = dataSnapshot.child("tipo_Usr").getValue().toString();
             }
 
             @Override
@@ -228,5 +229,10 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
 
     public String getTipoUsr() {
         return tipoUsr;
+    }
+
+    public void add(View view){
+        Intent i = new Intent(view.getContext(), EditPregunta.class);
+        startActivity(i);
     }
 }

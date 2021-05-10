@@ -32,7 +32,7 @@ public class Principal extends Fragment {
     public static final String USUARIO = "com.example.proyectointegrador12.principal.Principal.USUARIO";
 
     FirebaseDatabase DBRef;
-    RecyclerView rv; //rv
+    RecyclerView rv;
     Adapter_Principal adapter;
     List<DB_Noticias> noticias;
     LinearLayout ll_add;

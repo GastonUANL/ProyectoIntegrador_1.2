@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#575757"
+    android:layout_margin="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/rf_txt_Pregunta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Pregunta?"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_margin="5dp"/>
+
+            <TextView
+                android:id="@+id/rf_txt_Respuesta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Respuesta de ejemplo para una pregunta genérica."
+                android:textColor="#FFFFFF"
+                android:layout_margin="5dp"/>
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:id="@+id/rf_ll_BtnsAdminP">
+        <Button
+            android:id="@+id/rf_btn_EditarPreg"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Editar"
+            android:textColor="#3C3C3C"
+            android:backgroundTint="#DADADA"
+            android:layout_marginRight="5dp"/>
+        <Button
+            android:id="@+id/rf_btn_EliminarPreg"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Eliminar"
+            android:textColor="#3C3C3C"
+            android:backgroundTint="#DADADA"
+            android:layout_marginLeft="5dp"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -8,141 +8,42 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:id="@+id/rf_ll_BtnsAdminFragP">
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:onClick="add"
+                android:text="Agregar Pregunta"
+                app:backgroundTint="@android:color/holo_green_dark"
+                tools:text="Agregar Pregunta" />
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="407dp"
-            android:layout_height="133dp"
-            android:layout_marginTop="52dp"
-            android:contentDescription="@string/topimage"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
             android:src="@mipmap/preguntas"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="360dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="16dp"
-            android:text="Pregunta"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3"
-            tools:text="pregunta01" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="360dp"
-            android:layout_height="55dp"
-            android:text="Respuesta"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
-            tools:text="respuesta01" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="360dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="16dp"
-            android:text="Pregunta"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/divider"
-            tools:text="pregunta02" />
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="360dp"
-            android:layout_height="55dp"
-            android:text="Respuesta"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7"
-            tools:text="respuesta02" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="360dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="16dp"
-            android:text="Pregunta"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/divider2"
-            tools:text="pregunta03" />
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="360dp"
-            android:layout_height="55dp"
-            android:text="Respuesta"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10"
-            tools:text="respuesta03" />
-
-        <View
-            android:id="@+id/divider"
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="16dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            android:layout_height="match_parent"
+            android:id="@+id/rv_Preguntas" />
 
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="413dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="16dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-        <View
-            android:id="@+id/divider3"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="16dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="155dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:text="Volver"
-            app:backgroundTint="#4CAF50"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Volver" />
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:text="Agregar Pregunta"
-            app:backgroundTint="#4CAF50"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Agregar Pregunta" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </FrameLayout>
