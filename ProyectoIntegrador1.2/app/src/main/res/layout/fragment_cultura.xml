@@ -22,13 +22,15 @@
             android:gravity="center"
             android:background="@android:color/holo_green_dark"
             android:id="@+id/ll_add_C">
+
             <Button
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:text="Agregar"
+                android:layout_margin="3dp"
                 android:backgroundTint="#575757"
-                android:textColor="#E4E4E4"
-                android:layout_margin="3dp"/>
+                android:onClick="add"
+                android:text="Agregar"
+                android:textColor="#E4E4E4" />
         </LinearLayout>
 
     </LinearLayout>

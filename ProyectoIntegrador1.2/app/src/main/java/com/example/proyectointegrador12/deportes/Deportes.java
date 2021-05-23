@@ -37,7 +37,9 @@ public class Deportes extends Fragment {
     List<DB_Noticias> noticias;
     LinearLayout ll_add;
 
-    String TipoUsr = "";
+    String TipoUsr = "", idUsr = "";
+
+    boolean onload = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,11 +57,12 @@ public class Deportes extends Fragment {
 
         MenuDinamico MD = (MenuDinamico) getActivity();
         TipoUsr = MD.getTipoUsr();
+        idUsr = MD.getUsr();
 
         //UI
         noticias = new ArrayList<>();
         rv = view.findViewById(R.id.rv_Deportes);
-        adapter = new Adapter_Principal(noticias, TipoUsr);
+        adapter = new Adapter_Principal(noticias, TipoUsr, idUsr);
         ll_add = view.findViewById(R.id.ll_add_D);
 
         //Hide
@@ -72,14 +75,18 @@ public class Deportes extends Fragment {
         rv.setAdapter(adapter);
 
         //Content
+        onload = true;
         DBRef.getReference().getRoot().child("Noticias").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 noticias.removeAll(noticias);
-                for(DataSnapshot ds : dataSnapshot.getChildren()){
-                    if(ds.child("tipo_Noticia").getValue().toString().equals("3")){
-                        DB_Noticias db_noticias = dataSnapshot.child(ds.getKey()).getValue(DB_Noticias.class);
-                        noticias.add(db_noticias);
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    if (ds.child("contenido").exists() && ds.child("fecha").exists() && ds.child("id_Noticia").exists() && ds.child("id_Usr").exists() && ds.child("imagen").exists() &&
+                            ds.child("tipo_Noticia").exists() && ds.child("titulo").exists()){
+                        if (ds.child("tipo_Noticia").getValue().toString().equals("3")) {
+                            DB_Noticias db_noticias = dataSnapshot.child(ds.getKey()).getValue(DB_Noticias.class);
+                            noticias.add(db_noticias);
+                        }
                     }
                 }
                 adapter.notifyDataSetChanged();
@@ -92,5 +99,8 @@ public class Deportes extends Fragment {
         });
     }
 
-    public void editNoticia(View view) { }
+    public void add(View view) {
+        Intent i = new Intent(this.getContext(), EditNoticia.class);
+        startActivity(i);
+    }
 }

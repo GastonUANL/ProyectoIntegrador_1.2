@@ -30,6 +30,7 @@ import com.example.proyectointegrador12.db.DB_Noticias;
 import com.example.proyectointegrador12.deportes.Deportes;
 import com.example.proyectointegrador12.preguntas.Preguntas;
 import com.example.proyectointegrador12.principal.Principal;
+import com.example.proyectointegrador12.principal.Registro;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,16 +45,17 @@ import java.util.List;
 public class MenuDinamico extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String USUARIO = "com.example.proyectointegrador12.MenuDinamico.USUARIO";
-    public static final String NOTICIA = "com.example.proyectointegrador12.MenuDinamico.NOTICIA";
+    public static final String TIPO = "com.example.proyectointegrador12.MenuDinamico.TIPO";
 
     DrawerLayout dl;
     NavigationView nv;
     Toolbar tb;
     ActionBarDrawerToggle toggle;
-    String idUsr = "";
+    public String idUsr = "";
     public String tipoUsr = "";
     ImageView imgPrerfil;
     TextView namePerfil;
+    String tipo = "1";
 
     DatabaseReference DBRef;
 
@@ -164,11 +166,13 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
             case R.id.btn_Cultura:{
                 ft.replace(R.id.content, new Cultura()).commit();
                 setTitle(item.getTitle());
+                tipo = "2";
                 break;
             }
             case R.id.btn_Deportes:{
                 ft.replace(R.id.content, new Deportes()).commit();
                 setTitle(item.getTitle());
+                tipo = "3";
                 break;
             }
             case R.id.btn_Preguntas:{
@@ -196,6 +200,7 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
             default:{
                 ft.replace(R.id.content, new Principal()).commit();
                 setTitle(item.getTitle());
+                tipo = "1";
                 break;
             }
         }
@@ -220,19 +225,18 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void editNoticia(View view) {
-        Intent i = new Intent(getApplicationContext(), EditNoticia.class);
-        i.putExtra(USUARIO, "id_Usr");
-        i.putExtra(NOTICIA, "id_Ntc");
-        startActivity(i);
-    }
-
     public String getTipoUsr() {
         return tipoUsr;
     }
 
+    public String getUsr() {
+        return idUsr;
+    }
+
     public void add(View view){
-        Intent i = new Intent(view.getContext(), EditPregunta.class);
+        Intent i = new Intent(view.getContext(), EditNoticia.class);
+        i.putExtra(USUARIO, idUsr);
+        i.putExtra(TIPO, tipo);
         startActivity(i);
     }
 }
