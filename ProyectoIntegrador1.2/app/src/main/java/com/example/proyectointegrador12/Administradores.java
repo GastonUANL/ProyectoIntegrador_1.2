@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +15,7 @@ import com.example.proyectointegrador12.adapters.Adapter_Admins;
 import com.example.proyectointegrador12.adapters.Adapter_Principal;
 import com.example.proyectointegrador12.db.DB_Admins;
 import com.example.proyectointegrador12.db.DB_Noticias;
+import com.example.proyectointegrador12.principal.Registro;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -25,12 +27,15 @@ import java.util.List;
 public class Administradores extends AppCompatActivity {
 
     public static final String TIPOP = "com.example.proyectointegrador12.Administradores.TIPOP";
+    public static final String USR = "com.example.proyectointegrador12.Administradores.USR";
 
     FirebaseDatabase DBRef;
     RecyclerView rv; //rv
     Adapter_Admins adapter;
     ImageView back;
     List<DB_Admins> admins;
+
+    String idUsr = "";
 
 
     @Override
@@ -40,6 +45,9 @@ public class Administradores extends AppCompatActivity {
 
         //DB
         DBRef = FirebaseDatabase.getInstance();
+        Intent i = getIntent();
+        idUsr = i.getStringExtra(MenuDinamico.USUARIO);
+
 
         //UI
         admins = new ArrayList<>();
@@ -62,9 +70,13 @@ public class Administradores extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 admins.removeAll(admins);
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
-                    if(ds.child("tipo_Usr").getValue().toString().equals("2")){
-                        DB_Admins db_admins = dataSnapshot.child(ds.getKey()).getValue(DB_Admins.class);
-                        admins.add(db_admins);
+                    if(ds.child("activo").exists() && ds.child("contrasena").exists() && ds.child("correo").exists() &&
+                            ds.child("id_Usr").exists() && ds.child("imagen").exists() && ds.child("nombreUsuario").exists() &&
+                            ds.child("tipo_Usr").exists()) {
+                        if (ds.child("tipo_Usr").getValue().toString().equals("2")) {
+                            DB_Admins db_admins = dataSnapshot.child(ds.getKey()).getValue(DB_Admins.class);
+                            admins.add(db_admins);
+                        }
                     }
                 }
                 adapter.notifyDataSetChanged();
@@ -86,9 +98,10 @@ public class Administradores extends AppCompatActivity {
         this.finish();
     }
 
-    public void agregar(View view){
-        Intent i = new Intent(getApplicationContext(), EditPerfil.class);
+    public void agregarAdm(View view){
+        Intent i = new Intent(getApplicationContext(), Registro.class);
         i.putExtra(TIPOP, "2");
+        i.putExtra(USR, idUsr);
         startActivity(i);
     }
 }

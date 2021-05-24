@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".principal.Registro"
-    android:background="@android:color/holo_green_dark">
+    android:background="@android:color/holo_green_dark"
+    tools:context=".principal.Registro">
 
     <ImageView
         android:id="@+id/btn_back"
@@ -24,8 +24,8 @@
         android:layout_marginRight="8dp"
         android:ems="10"
         android:hint="Ejemplo: Bob Jhonson"
-        android:textColor="#DCDCDC"
         android:inputType="textPersonName"
+        android:textColor="#DCDCDC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,8 +54,8 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="356dp"
         android:text="Correo Electronico"
-        android:textStyle="bold"
         android:textColor="#DCDCDC"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,8 +70,8 @@
         android:layout_marginRight="8dp"
         android:ems="10"
         android:hint="Ejemplo: BobJ@outlook.com"
-        android:textColor="#DCDCDC"
         android:inputType="textEmailAddress"
+        android:textColor="#DCDCDC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,8 +86,8 @@
         android:layout_marginRight="8dp"
         android:ems="10"
         android:hint="Ejemplo: Hola123"
-        android:textColor="#DCDCDC"
         android:inputType="textPassword"
+        android:textColor="#DCDCDC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,57 +97,51 @@
         android:id="@+id/textView20"
         android:layout_width="112dp"
         android:layout_height="41dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="280dp"
+        android:layout_marginTop="408dp"
         android:text="Contraseña"
         android:textColor="#DCDCDC"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView21"
         android:layout_width="112dp"
         android:layout_height="41dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="208dp"
+        android:layout_marginTop="484dp"
         android:text="Verificar contraseña"
         android:textColor="#DCDCDC"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/contrasena2input"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/contrasena2input"
         android:layout_width="256dp"
         android:layout_height="41dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="208dp"
-        android:textColor="#DCDCDC"
+        android:layout_marginTop="484dp"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#DCDCDC"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.961"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imagenPerfil"
         android:layout_width="157dp"
         android:layout_height="173dp"
         android:layout_marginTop="68dp"
+        android:src="@drawable/ic_miperfil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_miperfil" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/cargarimg"

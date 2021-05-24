@@ -29,7 +29,7 @@ import java.util.List;
 public class Adapter_Preguntas extends RecyclerView.Adapter<Adapter_Preguntas.Preguntas_ViewHolder> {
 
     public static final String PREGUNTA = "com.example.proyectointegrador12.Adapter_Preguntas.PREGUNTA";
-    public static final String TIPO = "com.example.proyectointegrador12.Adapter_Preguntas.PREGUNTA";
+    public static final String TIPO = "com.example.proyectointegrador12.Adapter_Preguntas.TIPO";
 
     List<DB_Preguntas> preguntas;
     String TipoUsr = "";

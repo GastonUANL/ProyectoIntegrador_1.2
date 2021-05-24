@@ -188,6 +188,7 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
             }
             case R.id.btn_Admins:{
                 Intent i = new Intent(getApplicationContext(), Administradores.class);
+                i.putExtra(USUARIO, idUsr);
                 startActivity(i);
                 break;
             }
@@ -237,6 +238,11 @@ public class MenuDinamico extends AppCompatActivity implements NavigationView.On
         Intent i = new Intent(view.getContext(), EditNoticia.class);
         i.putExtra(USUARIO, idUsr);
         i.putExtra(TIPO, tipo);
+        startActivity(i);
+    }
+
+    public void addP(View view){
+        Intent i = new Intent(view.getContext(), EditPregunta.class);
         startActivity(i);
     }
 }

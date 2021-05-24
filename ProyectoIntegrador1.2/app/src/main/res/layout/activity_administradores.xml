@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:onClick="agregar"
+            android:onClick="agregarAdm"
             android:text="Agregar"
             android:textColor="#3C3C3C"
             app:backgroundTint="#DADADA" />

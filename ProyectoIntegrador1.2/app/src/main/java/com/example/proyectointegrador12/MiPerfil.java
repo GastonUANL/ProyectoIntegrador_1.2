@@ -14,6 +14,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class MiPerfil extends AppCompatActivity {
 
@@ -21,7 +22,7 @@ public class MiPerfil extends AppCompatActivity {
 
     public static final String USUARIO = "com.example.proyectointegrador12.MiPerfil.USUARIO";
     String idUsr = "";
-    ImageView backbtn;
+    ImageView backbtn, img;
     TextView usr, correo, activo;
 
     @Override
@@ -48,6 +49,7 @@ public class MiPerfil extends AppCompatActivity {
         usr = findViewById(R.id.txt_NombreUsr);
         correo = findViewById(R.id.txt_Correo);
         activo = findViewById(R.id.txt_Activo);
+        img = findViewById(R.id.img_Usr_MiPerfil);
 
         DBRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -55,6 +57,9 @@ public class MiPerfil extends AppCompatActivity {
                 usr.setText(dataSnapshot.child("nombreUsuario").getValue().toString());
                 correo.setText(dataSnapshot.child("correo").getValue().toString());
                 activo.setText(dataSnapshot.child("activo").getValue().toString());
+                if(!dataSnapshot.child("imagen").getValue().toString().equals("N/A")){
+                    Picasso.get().load(dataSnapshot.child("imagen").getValue().toString()).into(img);
+                }
             }
 
             @Override

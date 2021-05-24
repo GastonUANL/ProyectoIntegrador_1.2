@@ -63,6 +63,8 @@ public class Adapter_Admins extends RecyclerView.Adapter<Adapter_Admins.Admins_V
         //Buttons
         if(db_admins.getActivo().equals("0")){
             holder.eliminar.setText("Activar");
+        } else {
+            holder.eliminar.setText("Desactivar");
         }
         holder.editar.setOnClickListener(new View.OnClickListener() {
             @Override

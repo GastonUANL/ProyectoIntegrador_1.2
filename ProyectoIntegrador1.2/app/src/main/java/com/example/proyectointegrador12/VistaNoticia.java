@@ -97,29 +97,34 @@ public class VistaNoticia extends AppCompatActivity {
         DBRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                titulo.setText(dataSnapshot.child("Noticias").child(id_Ntc).child("titulo").getValue().toString());
-                contenido.setText(dataSnapshot.child("Noticias").child(id_Ntc).child("contenido").getValue().toString());
-                String img = dataSnapshot.child("Noticias").child(id_Ntc).child("imagen").getValue().toString();
-                if(!img.equals("N/A")){
-                    Picasso.get().load(img).into(imgn);
-                }
+                if(dataSnapshot.child("Noticias").child(id_Ntc).child("contenido").exists() && dataSnapshot.child("Noticias").child(id_Ntc).child("fecha").exists() &&
+                        dataSnapshot.child("Noticias").child(id_Ntc).child("id_Noticia").exists() && dataSnapshot.child("Noticias").child(id_Ntc).child("id_Usr").exists() &&
+                        dataSnapshot.child("Noticias").child(id_Ntc).child("imagen").exists() && dataSnapshot.child("Noticias").child(id_Ntc).child("tipo_Noticia").exists() &&
+                        dataSnapshot.child("Noticias").child(id_Ntc).child("titulo").exists()) {
+                    titulo.setText(dataSnapshot.child("Noticias").child(id_Ntc).child("titulo").getValue().toString());
+                    contenido.setText(dataSnapshot.child("Noticias").child(id_Ntc).child("contenido").getValue().toString());
+                    String img = dataSnapshot.child("Noticias").child(id_Ntc).child("imagen").getValue().toString();
+                    if (!img.equals("N/A")) {
+                        Picasso.get().load(img).into(imgn);
+                    }
 
-                //Recicler View
-                comentarios.removeAll(comentarios);
-                for(DataSnapshot ds : dataSnapshot.child("Comentarios").getChildren()){
-                    if(ds.child("id_Noticia").exists() && ds.child("id_Comentario").exists() && ds.child("contenido").exists() && ds.child("id_Usr").exists() && ds.child("fecha").exists()) {
-                        if (ds.child("id_Noticia").getValue().toString().equals(id_Ntc)) {
-                            DB_Comentarios db_comentarios = new DB_Comentarios();
-                            db_comentarios.setContenido(ds.child("contenido").getValue().toString());
-                            db_comentarios.setFecha(ds.child("fecha").getValue().toString());
-                            db_comentarios.setId_Comentario(ds.child("id_Comentario").getValue().toString());
-                            db_comentarios.setId_Noticia(ds.child("id_Noticia").getValue().toString());
-                            db_comentarios.setId_Usr(ds.child("id_Usr").getValue().toString());
-                            comentarios.add(db_comentarios);
+                    //Recicler View
+                    comentarios.removeAll(comentarios);
+                    for (DataSnapshot ds : dataSnapshot.child("Comentarios").getChildren()) {
+                        if (ds.child("id_Noticia").exists() && ds.child("id_Comentario").exists() && ds.child("contenido").exists() && ds.child("id_Usr").exists() && ds.child("fecha").exists()) {
+                            if (ds.child("id_Noticia").getValue().toString().equals(id_Ntc)) {
+                                DB_Comentarios db_comentarios = new DB_Comentarios();
+                                db_comentarios.setContenido(ds.child("contenido").getValue().toString());
+                                db_comentarios.setFecha(ds.child("fecha").getValue().toString());
+                                db_comentarios.setId_Comentario(ds.child("id_Comentario").getValue().toString());
+                                db_comentarios.setId_Noticia(ds.child("id_Noticia").getValue().toString());
+                                db_comentarios.setId_Usr(ds.child("id_Usr").getValue().toString());
+                                comentarios.add(db_comentarios);
+                            }
                         }
                     }
+                    adapter.notifyDataSetChanged();
                 }
-                adapter.notifyDataSetChanged();
             }
 
             @Override

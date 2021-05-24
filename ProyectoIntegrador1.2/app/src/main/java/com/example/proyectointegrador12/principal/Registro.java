@@ -13,6 +13,7 @@ import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -53,6 +54,7 @@ public class Registro extends AppCompatActivity {
     DatabaseReference DBRef;
     StorageReference STRef;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    Button btn;
 
     EditText nombre, correo, contra1, contra2;
     String idUsr = "";
@@ -81,6 +83,7 @@ public class Registro extends AppCompatActivity {
         correo = findViewById(R.id.emailinput);
         contra1 = findViewById(R.id.contrasenainput);
         contra2 = findViewById(R.id.contrasena2input);
+        btn = findViewById(R.id.registrarse);
 
         //GetTipo
         tipoReg = getActivity();
@@ -95,6 +98,7 @@ public class Registro extends AppCompatActivity {
             activity = 1;
         } else if(i.hasExtra(Administradores.TIPOP)) {
             activity = 2;
+            btn.setText("Crear");
         }
         return activity;
     }
@@ -150,7 +154,11 @@ public class Registro extends AppCompatActivity {
                                 DBRef.child(idUsr).child("correo").setValue(correo.getText().toString());
                                 DBRef.child(idUsr).child("id_Usr").setValue(idUsr);
                                 DBRef.child(idUsr).child("nombreUsuario").setValue(nombre.getText().toString());
-                                DBRef.child(idUsr).child("tipo_Usr").setValue("1");
+                                if(tipoReg == 1) {
+                                    DBRef.child(idUsr).child("tipo_Usr").setValue("1");
+                                } else {
+                                    DBRef.child(idUsr).child("tipo_Usr").setValue("2");
+                                }
                                 if(cambImg){
                                     StorageReference filereference = STRef.child(System.currentTimeMillis() + "." + getFileExt(img));
                                     filereference.putFile(img).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {

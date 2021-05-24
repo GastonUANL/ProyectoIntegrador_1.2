@@ -28,6 +28,7 @@ public class EditPregunta extends AppCompatActivity {
     int tipo = 0;
     String id_Preg = "";
     DatabaseReference DBRef;
+    boolean save = false;
 
 
     @Override
@@ -54,8 +55,6 @@ public class EditPregunta extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     pregunta.setHint(dataSnapshot.child("pregunta").getValue().toString());
                     respuesta.setHint(dataSnapshot.child("respuesta").getValue().toString());
-                    pregunta.setText(dataSnapshot.child("pregunta").getValue().toString());
-                    respuesta.setText(dataSnapshot.child("respuesta").getValue().toString());
                 }
 
                 @Override
@@ -66,33 +65,37 @@ public class EditPregunta extends AppCompatActivity {
         }
     }
 
-    public void guardar(View view){
+    public void guardarP(View view){
+        boolean preg = false;
+        boolean resp = false;
         if(tipo == 1){
-            int cont = 0;
             if(pregunta.getText().length() > 0){
                 if(pregunta.getText().length() < 5) {
                     pregunta.setError("La pregunta debe contener al menos 5 caracteres, o deje el campo en blanco para mantener la información actual.");
                 } else {
-                    DBRef.child(id_Preg).child("pregunta").setValue(pregunta.getText());
+                    //DBRef.child(id_Preg).child("pregunta").setValue(pregunta.getText());
+                    preg = true;
                 }
-            } else { cont++; }
+            }
             if(respuesta.getText().length() > 0){
                 if(respuesta.getText().length() < 2) {
                     respuesta.setError("La respuesta debe contener al menos 2 caracteres, o deje el campo en blanco para mantener la información actual.");
                 } else {
-                    DBRef.child(id_Preg).child("respuesta").setValue(respuesta.getText());
+                    //DBRef.child(id_Preg).child("respuesta").setValue(respuesta.getText());
+                    resp = true;
                 }
-            } else {cont++;}
-            if(cont < 2){
+            }
+            if(preg && resp){
+                DBRef.child(id_Preg).child("pregunta").setValue(pregunta.getText().toString());
+                DBRef.child(id_Preg).child("id_Pregunta").setValue(id_Preg);
+                DBRef.child(id_Preg).child("respuesta").setValue(respuesta.getText().toString());
                 Toast.makeText(this, "Se guardaron los cambios.", Toast.LENGTH_SHORT).show();
                 this.finish();
             } else {
-                Toast.makeText(this, "Debes cambiar al menos uno de los datos.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Favor de Ingresar los datos correctamente o dejar los campos vacios para mantener la informacion.", Toast.LENGTH_SHORT).show();
             }
         }
         else {
-            boolean preg = false;
-            boolean resp = false;
             if(pregunta.getText().length() < 5) {
                 pregunta.setError("La pregunta debe contener al menos 5 caracteres, o deje el campo en blanco para mantener la información actual.");
             } else {
@@ -103,12 +106,33 @@ public class EditPregunta extends AppCompatActivity {
             } else {
                 resp = true;
             }
-
             if(preg && resp){
-                DBRef.child(id_Preg).child("pregunta").setValue(pregunta.getText());
-                DBRef.child(id_Preg).child("respuesta").setValue(respuesta.getText());
-                Toast.makeText(this, "Se guardaron los cambios.", Toast.LENGTH_SHORT).show();
-                this.finish();
+                save = true;
+                DBRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(save){
+                            int cont = 1;
+                            for(DataSnapshot ds : dataSnapshot.getChildren()){
+                                if(ds.child("id_Pregunta").getValue().toString().equals(""+ cont)){
+                                    cont++;
+                                } else { break; }
+                            }
+                            DBRef.child("" + cont).child("pregunta").setValue(pregunta.getText().toString());
+                            DBRef.child("" + cont).child("id_Pregunta").setValue("" + cont);
+                            DBRef.child("" + cont).child("respuesta").setValue(respuesta.getText().toString());
+                            Toast.makeText(EditPregunta.this, "Se guardaron los cambios.", Toast.LENGTH_SHORT).show();
+                            save = false;
+                            EditPregunta.this.finish();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
             }
         }
     }

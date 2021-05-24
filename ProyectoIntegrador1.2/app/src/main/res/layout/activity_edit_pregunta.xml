@@ -88,10 +88,11 @@
             android:id="@+id/btn_Guardar_EditP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Guardar"
             android:layout_margin="15dp"
+            android:onClick="guardarP"
+            android:text="Guardar"
             android:textColor="#3C3C3C"
-            app:backgroundTint="#DADADA"/>
+            app:backgroundTint="#DADADA" />
 
     </LinearLayout>
 

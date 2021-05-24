@@ -94,7 +94,7 @@ public class Preguntas extends Fragment {
         });
     }
 
-    public void add(View view){
+    public void addP(View view){
         Intent i = new Intent(view.getContext(), EditPregunta.class);
         i.putExtra(TIPO, "0");
         startActivity(i);

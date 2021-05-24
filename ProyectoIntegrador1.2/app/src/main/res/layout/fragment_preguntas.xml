@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:onClick="add"
+                android:onClick="addP"
                 android:text="Agregar Pregunta"
                 app:backgroundTint="@android:color/holo_green_dark"
                 tools:text="Agregar Pregunta" />
